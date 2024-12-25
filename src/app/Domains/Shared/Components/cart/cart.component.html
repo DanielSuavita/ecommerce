@@ -1,0 +1,86 @@
+<div class="fixed border-l-4 top-0 right-0 bg-red z-40 w-72 h-screen p-4 overflow-y-auto transition-transform bg-white"
+  [class.translate-x-full]="hideSideMenu()">
+  <div class="flex justify-between items-center">
+    <p class="text-xl">My Cart</p>
+    <button (click)="toggleSideMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <div class="py-3">
+    <div
+      class="w-full max-w-md p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div class="flow-root">
+        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+
+          @for(product of products(); track product){
+
+          <li class="py-3 sm:py-4">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <img class="w-8 h-8 rounded-full" [src]="product.images[0]" [alt]="product.title">
+              </div>
+              <div class="flex-1 min-w-0 ms-4">
+                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                  {{product.title}}
+                </p>
+                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                  {{product.creationAt}}
+                </p>
+              </div>
+              <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                ${{product.price}}
+              </div>
+            </div>
+          </li>
+
+          }@empty {
+
+          <li class="py-3 sm:py-4">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <svg class="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3" aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z" />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0 ms-4">
+                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                  No hay productos
+                </p>
+                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                  Selecciona productos y se visualizarán aquí
+                </p>
+              </div>
+              <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+
+              </div>
+            </div>
+          </li>
+
+          }
+
+          <li class="py-1 sm:py-1">
+            <div class="flex items-center">
+              <div class="flex-1 min-w-0 ms-4">
+                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                  Total
+                </p>
+                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                  Lo que debes pagar
+                </p>
+              </div>
+              <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                ${{total()}}
+              </div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

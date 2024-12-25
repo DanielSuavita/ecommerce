@@ -1,0 +1,29 @@
+<div class="flex space-x-4">
+
+
+  <aside id="logo-sidebar"
+    class="transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    aria-label="Sidebar">
+    <div class="px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+      <ul class="space-y-2 font-medium">
+
+        @for (category of categories(); track category) {
+        <li>
+          <a routerLink="/" [queryParams]="{category_id: category.id}" routerLinkActive="router-link-active"  class="ms-3">{{category.name}}</a>
+        </li>
+        }
+
+      </ul>
+    </div>
+  </aside>
+
+  <div class="grid grid-cols-3 gap-8 mt-5">
+
+    @for(product of products(); track product){
+      <app-product [Product]="product" (addToCart)="AddToCart($event)" />
+    }@empty{
+      <p>No hay productos en este momento</p>
+    }
+
+  </div>
+</div>
